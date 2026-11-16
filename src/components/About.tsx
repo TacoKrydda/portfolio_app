@@ -1,5 +1,7 @@
+import portraitImg from "../assets/portrait.webp";
+
 const portrait = {
-  src: "/portrait.webp",
+  src: portraitImg,
   alt: "Porträtt av Jonathan Berhane",
   width: 400,
   height: 500,
