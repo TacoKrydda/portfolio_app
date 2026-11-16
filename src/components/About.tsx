@@ -11,8 +11,8 @@ const portrait = {
 const facts = [
   { label: "Utbildning", value: "Frontend Developer" },
   { label: "Fokus", value: "Frontend och backend" },
-  { label: "Intressen", value: "Fotboll, gaming, anime och D&D" },
-  { label: "Söker", value: "Praktik och sommarjobb" },
+  { label: "Intressen", value: "Fotboll, gaming, anime och dnd" },
+  { label: "Söker", value: "Praktik och jobb" },
 ];
 
 export default function About() {
