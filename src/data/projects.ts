@@ -16,6 +16,45 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: "personal-portfolio",
+    title: "Personal Portfolio",
+    type: "Frontend",
+    year: 2026,
+
+    summary:
+      "Responsiv portfolio byggd med React och TypeScript för att presentera min utvecklarprofil, tekniska kompetenser och personliga projekt.",
+
+    description:
+      "Personal Portfolio är en webbapplikation som jag utvecklade för att samla och presentera mina projekt och erfarenheter som utvecklare. Webbplatsen innehåller en personlig presentation, information om mina tekniska inriktningar och en projektdel där besökare kan filtrera projekt efter frontend, backend och fullstack. Varje projekt har en egen detaljsida med beskrivning, funktioner och använda tekniker. Jag har byggt applikationen med React och TypeScript, med fokus på komponentbaserad struktur, återanvändbar data, responsiv design och tillgänglighet.",
+
+    role: "Ensam utvecklare: design, frontend, komponentstruktur, routing och deployment",
+
+    features: [
+      "Personlig presentationssida med information om mig och mina kompetenser",
+      "Projektöversikt med återanvändbara projektkort",
+      "Filtrering av projekt efter Frontend, Backend och Fullstack",
+      "Separata detaljsidor för varje projekt med dynamisk routing",
+      "Centraliserad projektdata med TypeScript",
+      "Responsiv navigering för desktop och mobil",
+      "Tillgänglighetsanpassning med tangentbordsnavigering och ARIA-attribut",
+      "Lazy loading av projektdetaljsidor",
+      "Automatisk deployment till GitHub Pages med GitHub Actions",
+    ],
+
+    tech: [
+      "React 19",
+      "TypeScript",
+      "React Router",
+      "Vite",
+      "CSS",
+      "Git",
+      "GitHub Actions",
+      "GitHub Pages",
+    ],
+
+    repoUrl: "https://github.com/TacoKrydda/portfolio_app",
+  },
+  {
     slug: "authentication-app",
     title: "Authentication API",
     type: "Backend",
