@@ -1,0 +1,625 @@
+/* ==========================================================================
+   Designtokens (ljust tema). Alla textfärger uppfyller WCAG AA (4.5:1).
+   --ink på --bg ≈ 16:1 · --muted på --bg ≈ 7:1 · --accent på vitt ≈ 6.7:1
+   ========================================================================== */
+:root {
+  --bg: #f6f8fc;
+  --surface: #ffffff;
+  --tint: #eaeff8;
+  --ink: #0f1b33;
+  --muted: #3f4b66;
+  --line: #ccd4e4;
+
+  --accent: #1d4ed8;
+  --accent-hover: #1e3fae;
+  --front: #1d4ed8;
+  --back: #0f766e;
+  --full: #6d28d9;
+  --mark: #fde68a;
+
+  --font-body:
+    system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+  --font-head:
+    "Iowan Old Style", "Palatino Linotype", Palatino, Georgia,
+    "Times New Roman", serif;
+
+  --radius: 0.75rem;
+  --header-h: 4rem;
+  --space: clamp(3.5rem, 8vw, 6.5rem);
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-head);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.75rem;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(2.1rem, 7vw, 3.75rem);
+}
+h2 {
+  font-size: clamp(1.7rem, 4.5vw, 2.4rem);
+}
+h3 {
+  font-size: 1.3rem;
+}
+h4 {
+  font-size: 1.05rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+p {
+  margin: 0 0 1rem;
+  max-width: 65ch;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: var(--accent);
+  text-underline-offset: 0.2em;
+}
+a:hover {
+  color: var(--accent-hover);
+}
+
+/* Synlig fokusmarkering för tangentbordsanvändare (WCAG 2.4.7 / 2.4.11) */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+[tabindex="-1"]:focus {
+  outline: none;
+}
+
+.container {
+  width: min(100% - 2.5rem, 70rem);
+  margin-inline: auto;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  background: var(--ink);
+  color: #fff;
+  border-radius: 0.5rem;
+  transition: top 0.15s;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* ---------- Knappar ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.75rem; /* ≥ 44px tryckyta */
+  padding: 0.7rem 1.25rem;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+.btn--primary {
+  background: var(--accent);
+  color: #fff;
+}
+.btn--primary:hover {
+  background: var(--accent-hover);
+  color: #fff;
+}
+.btn--secondary {
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--ink);
+}
+.btn--secondary:hover {
+  background: var(--ink);
+  color: #fff;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+/* ---------- Header / navigering (mobil först) ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgb(246 248 252 / 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--header-h);
+}
+
+.nav__brand {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.nav__toggle {
+  min-height: 2.75rem;
+  padding: 0.5rem 1rem;
+  font: inherit;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--surface);
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.nav__list {
+  display: none;
+  position: absolute;
+  inset: var(--header-h) 0 auto 0;
+  padding: 0.5rem 1.25rem 1.25rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+.nav__list.is-open {
+  display: block;
+}
+.nav__list a {
+  display: block;
+  padding: 0.85rem 0;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line);
+}
+.nav__list a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  padding-block: clamp(2.5rem, 7vw, 5.5rem);
+}
+
+.hero__grid {
+  display: grid;
+  gap: 2.5rem;
+}
+.hero__lead {
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-top: 1.25rem;
+}
+
+/* Två lager: det synliga ovanpå det som körs bakom. Typ anges i text, inte bara färg. */
+.layers {
+  display: grid;
+  gap: 0.75rem;
+  align-content: start;
+}
+.layer {
+  padding: 1.25rem 1.5rem;
+  background: var(--surface);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+}
+.layer h2 {
+  font-size: 1.35rem;
+  margin-bottom: 0.1rem;
+}
+.layer > p {
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+.layer li {
+  padding-left: 1.25rem;
+  position: relative;
+}
+.layer li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+}
+.layer--front {
+  border-color: var(--front);
+  box-shadow: 0.5rem 0.5rem 0 var(--mark);
+}
+.layer--front li::before {
+  background: var(--front);
+}
+.layer--back {
+  border-color: var(--back);
+  margin-left: 1.25rem;
+  box-shadow: 0.5rem 0.5rem 0 var(--tint);
+}
+.layer--back li::before {
+  background: var(--back);
+}
+
+/* ---------- Sektioner ---------- */
+.section {
+  padding-block: var(--space);
+}
+.section--tint {
+  background: var(--tint);
+}
+.section--surface {
+  background: var(--surface);
+  border-block: 1px solid var(--line);
+}
+.section__lead {
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.tags li {
+  padding: 0.2rem 0.75rem;
+  font-size: 0.925rem;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+
+/* ---------- Om mig ---------- */
+.about {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+}
+.about__figure {
+  margin: 0;
+  max-width: 18rem;
+}
+.about__figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  background: var(--tint);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: 0.5rem 0.5rem 0 var(--mark);
+}
+.about__figure figcaption {
+  margin-top: 0.85rem;
+  font-size: 0.925rem;
+  color: var(--muted);
+}
+.about__facts {
+  display: grid;
+  gap: 0.75rem 1.5rem;
+  margin: 1.5rem 0 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+}
+.about__facts dt {
+  font-size: 0.925rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+.about__facts dd {
+  margin: 0;
+}
+
+/* ---------- Filter ---------- */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.chip {
+  min-height: 2.75rem;
+  padding: 0.4rem 1.1rem;
+  font: inherit;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 999px;
+  cursor: pointer;
+}
+.chip:hover {
+  border-color: var(--ink);
+}
+.chip[aria-pressed="true"] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+}
+
+/* ---------- Projektkort ---------- */
+.grid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.card {
+  position: relative; /* för klickbar yta */
+  padding: 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 6px solid var(--type, var(--accent));
+  border-radius: var(--radius);
+  transition: border-color 0.15s;
+}
+.card:hover {
+  border-color: var(--type, var(--accent));
+}
+.card:focus-within {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+.card__link {
+  color: var(--ink);
+  text-decoration: none;
+}
+.card__link:focus-visible {
+  outline: none;
+}
+.card__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+.card:hover .card__link {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.card .tags {
+  margin-top: 1rem;
+}
+
+.type--frontend {
+  --type: var(--front);
+}
+.type--backend {
+  --type: var(--back);
+}
+.type--fullstack {
+  --type: var(--full);
+}
+
+.badge {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  font-size: 0.925rem;
+  font-weight: 700;
+  color: var(--type, var(--accent));
+}
+
+/* ---------- Projektdetalj ---------- */
+.detail {
+  padding-block: 2rem var(--space);
+  max-width: 48rem;
+}
+.detail h2 {
+  margin-top: 2.5rem;
+  font-size: 1.6rem;
+}
+.detail__lead {
+  font-size: 1.25rem;
+  color: var(--muted);
+}
+.back-link {
+  display: inline-block;
+  padding-block: 0.5rem;
+  font-weight: 600;
+}
+
+.facts {
+  display: grid;
+  gap: 1rem;
+  margin: 1.5rem 0 0;
+  padding: 1.25rem 0;
+  border-block: 1px solid var(--line);
+}
+.facts dt {
+  font-size: 0.925rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+.facts dd {
+  margin: 0;
+}
+
+.checklist li {
+  position: relative;
+  padding: 0.35rem 0 0.35rem 1.75rem;
+}
+.checklist li::before {
+  content: "";
+  position: absolute;
+  left: 0.25rem;
+  top: 0.95em;
+  width: 0.7rem;
+  height: 0.4rem;
+  border-left: 3px solid var(--back);
+  border-bottom: 3px solid var(--back);
+  transform: rotate(-45deg) translateY(-50%);
+}
+.loading {
+  padding-block: 3rem;
+}
+
+/* ---------- Footer / kontakt ---------- */
+.site-footer {
+  color: #fff;
+  background: var(--ink);
+}
+.contact {
+  padding-block: var(--space) 2rem;
+}
+.contact p {
+  color: #d6ddee;
+}
+.contact__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  margin-top: 1rem;
+}
+.site-footer a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  color: #fff;
+  font-weight: 600;
+}
+.site-footer a:hover {
+  color: var(--mark);
+}
+.site-footer :focus-visible {
+  outline-color: var(--mark);
+}
+.footer__note {
+  padding-block: 1.25rem 2rem;
+  margin-bottom: 0;
+  font-size: 0.925rem;
+  color: #c3cce2;
+  border-top: 1px solid #2c3a5c;
+  max-width: none;
+}
+
+/* ---------- Större skärmar ---------- */
+@media (min-width: 48em) {
+  .nav__toggle {
+    display: none;
+  }
+  .nav__list,
+  .nav__list.is-open {
+    display: flex;
+    position: static;
+    gap: 0.25rem;
+    padding: 0;
+    background: none;
+    border: 0;
+  }
+  .nav__list a {
+    padding: 0.6rem 0.9rem;
+    border: 0;
+    border-radius: 999px;
+  }
+
+  .hero__grid {
+    grid-template-columns: 1.3fr 1fr;
+    align-items: center;
+    gap: 4rem;
+  }
+  .about {
+    grid-template-columns: 20rem 1fr;
+    gap: 4rem;
+  }
+  .about__figure {
+    max-width: none;
+  }
+  .about__facts {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .facts {
+    grid-template-columns: 8rem 1fr;
+  }
+}
+
+@media (min-width: 64em) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .grid:has(> :nth-child(4)) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Tvingade färger (Windows högkontrast) */
+@media (forced-colors: active) {
+  .card,
+  .layer,
+  .chip,
+  .btn {
+    border: 2px solid CanvasText;
+  }
+}
