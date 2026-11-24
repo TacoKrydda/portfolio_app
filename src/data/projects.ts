@@ -113,6 +113,7 @@ export const projects: Project[] = [
     tech: ["React 19", "TypeScript", "Vite", "CSS"],
 
     repoUrl: "https://github.com/Eiswohld/winner_stays_app",
+    liveUrl: "https://tacokrydda.github.io/winner_stays_app/",
     thumbnail: {
       src: "/projects/alexander/bild1.png",
       alt: "bild på Alexander quiz",
