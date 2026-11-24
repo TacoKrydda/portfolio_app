@@ -21,7 +21,7 @@ export default function Footer() {
           </li>
           <li>
             <a
-              href="https://github.com/"
+              href="https://github.com/TacoKrydda"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -31,7 +31,7 @@ export default function Footer() {
           </li>
           <li>
             <a
-              href="https://linkedin.com/"
+              href="www.linkedin.com/in/jonathan-berhane-80383a227"
               target="_blank"
               rel="noopener noreferrer"
             >

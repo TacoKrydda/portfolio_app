@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Link, useParams } from "react-router";
 import { getProject } from "../data/projects";
 import { ExternalLinkIcon } from "../components/Icons";
+import ImageGallery from "../components/ImageGallery";
 
 export default function ProjectDetails() {
   const { slug } = useParams();
@@ -18,25 +19,23 @@ export default function ProjectDetails() {
       <div className="container detail">
         <h1>Projektet hittades inte</h1>
         <p>Länken kan vara felaktig, eller så har projektet tagits bort.</p>
-        <Link className="btn btn--primary" to="/#projekt">
+        <Link className="btn btn--primary" to="/projekt">
           Se alla projekt
         </Link>
       </div>
     );
   }
 
-  const typeClass = `type--${project.type.toLowerCase()}`;
-
   return (
     <article className="container detail">
       <nav aria-label="Brödsmulor">
-        <Link className="back-link" to="/#projekt">
+        <Link className="back-link" to="/projekt">
           <span aria-hidden="true">←</span> Alla projekt
         </Link>
       </nav>
 
       <header className="detail__header">
-        <p className={`badge ${typeClass}`}>{project.type}</p>
+        <p className="badge">{project.categories.join(" · ")}</p>
         <h1>{project.title}</h1>
         <p className="detail__lead">{project.summary}</p>
       </header>
@@ -51,6 +50,17 @@ export default function ProjectDetails() {
           <dd>{project.role}</dd>
         </div>
       </dl>
+
+      {project.images && project.images.length > 0 && (
+        <section aria-labelledby="bilder">
+          <h2 id="bilder">Så ser det ut</h2>
+          <ImageGallery
+            key={project.slug}
+            images={project.images}
+            title={project.title}
+          />
+        </section>
+      )}
 
       <section aria-labelledby="om-projektet">
         <h2 id="om-projektet">Om projektet</h2>

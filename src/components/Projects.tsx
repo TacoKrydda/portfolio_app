@@ -1,50 +1,36 @@
-import { useState } from "react";
+import { Link } from "react-router";
 import ProjectCard from "./ProjectCard";
-import { projectFilters, projects, type ProjectFilter } from "../data/projects";
+import { projects } from "../data/projects";
+
+const FEATURED_COUNT = 3;
 
 export default function Projects() {
-  const [filter, setFilter] = useState<ProjectFilter>("Alla");
-
-  const visible =
-    filter === "Alla" ? projects : projects.filter((p) => p.type === filter);
-
   return (
     <section
       id="projekt"
       tabIndex={-1}
-      className="section section--tint"
+      className="section projects"
       aria-labelledby="projekt-title"
     >
       <div className="container">
-        <h2 id="projekt-title">Projekt</h2>
+        <h2 id="projekt-title" className="projects__title">
+          Utvalda projekt
+        </h2>
         <p className="section__lead">
           Ett urval av skol-, grupp- och egna projekt. Öppna ett projekt för att
           läsa mer om vad jag gjorde.
         </p>
 
-        <div className="filters" role="group" aria-label="Filtrera projekt">
-          {projectFilters.map((f) => (
-            <button
-              key={f}
-              type="button"
-              className="chip"
-              aria-pressed={filter === f}
-              onClick={() => setFilter(f)}
-            >
-              {f}
-            </button>
+        <div className="grid">
+          {projects.slice(0, FEATURED_COUNT).map((p) => (
+            <ProjectCard key={p.slug} project={p} />
           ))}
         </div>
 
-        <p className="sr-only" role="status" aria-live="polite">
-          Visar {visible.length} projekt
-          {filter !== "Alla" ? ` inom ${filter}` : ""}.
-        </p>
-
-        <div className="grid">
-          {visible.map((p) => (
-            <ProjectCard key={p.slug} project={p} />
-          ))}
+        <div className="projects__more">
+          <Link className="btn btn--primary" to="/projekt">
+            Visa alla projekt
+          </Link>
         </div>
       </div>
     </section>

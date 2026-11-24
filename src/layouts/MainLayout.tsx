@@ -4,11 +4,22 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 export default function MainLayout() {
-  const { pathname, hash, key } = useLocation();
+  const { pathname, search, hash, key } = useLocation();
   const mainRef = useRef<HTMLElement>(null);
   const isFirstRender = useRef(true);
+  const previous = useRef({ pathname, search, hash });
 
   useEffect(() => {
+    const last = previous.current;
+    previous.current = { pathname, search, hash };
+    if (
+      last.pathname === pathname &&
+      last.hash === hash &&
+      last.search !== search
+    ) {
+      return;
+    }
+
     if (hash) {
       const el = document.getElementById(decodeURIComponent(hash.slice(1)));
       if (el) {
@@ -23,7 +34,7 @@ export default function MainLayout() {
       mainRef.current?.focus({ preventScroll: true });
     }
     isFirstRender.current = false;
-  }, [pathname, hash, key]);
+  }, [pathname, search, hash, key]);
 
   return (
     <>
