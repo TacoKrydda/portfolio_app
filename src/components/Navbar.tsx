@@ -3,22 +3,22 @@ import { Link, useLocation } from "react-router";
 
 const links = [
   { to: "/#om", label: "Om mig" },
-  { to: "/#projekt", label: "Projekt" },
+  { to: "/projekt", label: "Projekt" },
   { to: "/#kontakt", label: "Kontakt" },
 ];
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
+  const [openKey, setOpenKey] = useState<string | null>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const location = useLocation();
 
-  useEffect(() => setOpen(false), [location]);
+  const open = openKey === location.key;
 
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        setOpen(false);
+        setOpenKey(null);
         buttonRef.current?.focus();
       }
     };
@@ -39,7 +39,7 @@ export default function Navbar() {
           className="nav__toggle"
           aria-expanded={open}
           aria-controls="huvudmeny"
-          onClick={() => setOpen((v) => !v)}
+          onClick={() => setOpenKey(open ? null : location.key)}
         >
           {open ? "Stäng" : "Meny"}
           <span className="sr-only"> huvudmeny</span>
@@ -49,7 +49,9 @@ export default function Navbar() {
           <ul id="huvudmeny" className={`nav__list${open ? " is-open" : ""}`}>
             {links.map((l) => (
               <li key={l.to}>
-                <Link to={l.to}>{l.label}</Link>
+                <Link to={l.to} onClick={() => setOpenKey(null)}>
+                  {l.label}
+                </Link>
               </li>
             ))}
           </ul>

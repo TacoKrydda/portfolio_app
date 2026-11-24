@@ -23,8 +23,8 @@ export default function Hero() {
           </div>
         </div>
 
-        <ul className="layers" aria-label="Det jag arbetar med">
-          <li className="layer layer--front">
+        <div className="layers" aria-label="Det jag arbetar med">
+          <div className="layer layer--front">
             <h2>Det du ser</h2>
             <p>Frontend</p>
             <ul>
@@ -32,8 +32,8 @@ export default function Hero() {
               <li>Responsiv design</li>
               <li>Tillgänglighet</li>
             </ul>
-          </li>
-          <li className="layer layer--back">
+          </div>
+          <div className="layer layer--back">
             <h2>Det som händer bakom</h2>
             <p>Backend</p>
             <ul>
@@ -41,8 +41,8 @@ export default function Hero() {
               <li>SQL och NoSQL</li>
               <li>REST-API och tester</li>
             </ul>
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
     </section>
   );

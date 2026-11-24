@@ -1,9 +1,21 @@
-export type ProjectType = "Frontend" | "Backend" | "Fullstack";
+export type Category = "Backend" | "Frontend" | "Fullstack" | "UX";
+export const categories: Category[] = [
+  "Backend",
+  "Frontend",
+  "Fullstack",
+  "UX",
+];
+export type CategoryFilter = "Alla" | Category;
+
+export interface ProjectImage {
+  src: string;
+  alt: string;
+}
 
 export interface Project {
   slug: string;
   title: string;
-  type: ProjectType;
+  categories: Category[];
   year: number;
   summary: string;
   description: string;
@@ -12,13 +24,109 @@ export interface Project {
   tech: string[];
   liveUrl?: string;
   repoUrl?: string;
+  images?: ProjectImage[];
+  thumbnail?: ProjectImage;
 }
 
 export const projects: Project[] = [
   {
+    slug: "biografen-regalia",
+    title: "Biografen Regalia",
+    categories: ["UX", "Backend", "Frontend", "Fullstack"],
+    year: 2026,
+
+    summary:
+      "En komplett biografwebbplats med filmvisningar, biljettbokning och administrationsgränssnitt. Utvecklad som ett fullstackprojekt i grupp.",
+
+    description:
+      "Biografen Regalia är ett skolprojekt där vi utvecklade en komplett webbapplikation för en fiktiv biograf. Projektet omfattade hela utvecklingsprocessen, från design och prototyper i Figma till frontend, backend och databashantering. Frontend byggdes med React och TypeScript, medan backend utvecklades med Node.js och Express med en MySQL-databas. Mitt huvudsakliga arbete låg inom databashantering i MySQL med DBeaver, utveckling och underhåll av Express-routes samt frontendens hero-sektion och administrationssida. Projektet är publicerat och tillgängligt online.",
+
+    role: "Fullstackutvecklare i projektgrupp: Figma-design, MySQL, Express-routes, hero-sektion och administrationssida",
+
+    features: [
+      "Biografwebbplats med presentation av filmer och visningar",
+      "Filmvisningar med information om tillgängliga föreställningar",
+      "Biljettbokningsflöde med hantering av bokningar",
+      "Hantering av tillgängliga platser och biljettkategorier",
+      "Användarhantering och autentisering",
+      "Administrationssida för biografens administrativa funktioner",
+      "Responsivt frontendgränssnitt byggt med React",
+      "REST API med Node.js och Express",
+      "MySQL-databas med relationsbaserad datamodell",
+      "Design och prototyper framtagna i Figma",
+    ],
+
+    tech: [
+      "Figma",
+      "React",
+      "TypeScript",
+      "Vite",
+      "React Router",
+      "Node.js",
+      "Express",
+      "MySQL",
+      "DBeaver",
+      "Bootstrap",
+      "React Bootstrap",
+      "SCSS",
+    ],
+
+    liveUrl: "https://bioregalia.se/",
+    repoUrl: "https://github.com/noiralba/Regalia",
+    thumbnail: {
+      src: "/projects/regalia/thumbnail_regalia.gif",
+      alt: "bild på biografen Regalia hero-sektion",
+    },
+    images: [
+      { src: "/projects/regalia/bild1.png", alt: "" },
+      { src: "/projects/regalia/bild2.png", alt: "" },
+      { src: "/projects/regalia/bild3.png", alt: "" },
+      { src: "/projects/regalia/bild4.png", alt: "" },
+      { src: "/projects/regalia/bild5.png", alt: "" },
+    ],
+  },
+
+  {
+    slug: "alexander-app",
+    title: "Alexander",
+    categories: ["Frontend"],
+    year: 2026,
+
+    summary:
+      "Ett gemensamt frontendprojekt utvecklat i React och TypeScript inför en LIA-ansökan, med fokus på samarbete, komponentbaserad utveckling och kodintegration.",
+
+    description:
+      "Alexander är ett samarbetsprojekt som jag utvecklade tillsammans med en vän inför en LIA-ansökan. Syftet var att visa hur vi kan samarbeta, dela upp utvecklingsarbetet och kombinera våra kunskaper i ett gemensamt projekt. Vi delade upp arbetet mellan oss där jag ansvarade för att utveckla komponenter och sidor samt integrera applikationens olika delar. Min vän arbetade med CSS och tog fram datastrukturen och frågorna. När de olika delarna var färdiga ansvarade jag för att sammanfoga vår kod och se till att komponenterna fungerade tillsammans. Projektet gav oss praktisk erfarenhet av samarbete, kodintegration och gemensam frontendutveckling.",
+
+    role: "Frontendutvecklare i par: komponenter, sidor, kodintegration och sammanfogning av gemensam kod",
+
+    features: [
+      "Komponentbaserad frontendarkitektur med React",
+      "Återanvändbara komponenter för applikationens olika delar",
+      "Separata sidor med TypeScript",
+      "Integration av gemensam datastruktur och frågelogik",
+      "Sammanfogning och integration av kod från två utvecklare",
+      "Gemensam utveckling med uppdelade ansvarsområden",
+      "CSS-styling och visuell utformning i samarbete",
+    ],
+
+    tech: ["React 19", "TypeScript", "Vite", "CSS"],
+
+    repoUrl: "https://github.com/Eiswohld/winner_stays_app",
+    thumbnail: {
+      src: "/projects/alexander/bild1.png",
+      alt: "bild på Alexander quiz",
+    },
+    images: [
+      { src: "projects/alexander/bild1.png", alt: "" },
+      { src: "/projects/alexander/bild2.png", alt: "" },
+      { src: "/projects/alexander/bild3.png", alt: "" },
+    ],
+  },
+  {
     slug: "personal-portfolio",
     title: "Personal Portfolio",
-    type: "Frontend",
+    categories: ["Frontend"],
     year: 2026,
 
     summary:
@@ -53,11 +161,15 @@ export const projects: Project[] = [
     ],
 
     repoUrl: "https://github.com/TacoKrydda/portfolio_app",
+    thumbnail: {
+      src: "/projects/portfolio_app/thumbnail.gif",
+      alt: "gif på portfolio sidan",
+    },
   },
   {
     slug: "authentication-app",
     title: "Authentication API",
-    type: "Backend",
+    categories: ["Backend"],
     year: 2026,
 
     summary:
@@ -94,7 +206,7 @@ export const projects: Project[] = [
   {
     slug: "upload-images-app",
     title: "Upload Images App",
-    type: "Fullstack",
+    categories: ["Fullstack"],
     year: 2024,
 
     summary:
@@ -129,11 +241,20 @@ export const projects: Project[] = [
     ],
 
     repoUrl: "https://github.com/TacoKrydda/UploadImagesApp",
+    thumbnail: {
+      src: "/projects/upload-images-app/bild3.png",
+      alt: "bild på när man laddar upp en bild",
+    },
+    images: [
+      { src: "/projects/upload-images-app/bild1.png", alt: "" },
+      { src: "/projects/upload-images-app/bild2.png", alt: "" },
+      { src: "/projects/upload-images-app/bild3.png", alt: "" },
+    ],
   },
   {
     slug: "e-commerce-app",
     title: "E-commerce App",
-    type: "Fullstack",
+    categories: ["Fullstack"],
     year: 2025,
 
     summary:
@@ -173,16 +294,17 @@ export const projects: Project[] = [
     ],
 
     repoUrl: "https://github.com/TacoKrydda/E-commerceApp",
+    thumbnail: {
+      src: "/projects/E-commerceApp/bild1.png",
+      alt: "bild på webbshopen",
+    },
+    images: [
+      { src: "/projects/E-commerceApp/bild1.png", alt: "" },
+      { src: "/projects/E-commerceApp/bild2.png", alt: "" },
+      { src: "/projects/E-commerceApp/bild3.png", alt: "" },
+    ],
   },
 ];
-
-export const projectFilters = [
-  "Alla",
-  "Frontend",
-  "Backend",
-  "Fullstack",
-] as const;
-export type ProjectFilter = (typeof projectFilters)[number];
 
 export function getProject(slug: string | undefined): Project | undefined {
   return projects.find((p) => p.slug === slug);
